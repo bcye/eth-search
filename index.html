@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>ETH Search</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f3f4f6;
+        color: #1f2937;
+      }
+      .container {
+        text-align: center;
+      }
+      h1 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+      }
+      .search-box {
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        border: 2px solid #cbd5e1;
+        border-radius: 0.5rem;
+        width: 500px;
+      }
+      .hint {
+        margin-top: 1rem;
+        font-size: 0.875rem;
+        display: block;
+        width: 500px;
+        text-align: left;
+      }
+      .hint a {
+        color: #3b82f6;
+        text-decoration: none;
+      }
+    </style>
+    <script>
+      function redirectToGoogleSearch() {
+        const query = document.getElementById("search").value;
+        const encodedQuery = encodeURIComponent(
+          query + ` site:ethz.ch filetype:pdf ${Date.getCurrentYear()}`,
+        );
+        window.location.href = `https://www.google.com/search?q=${encodedQuery}`;
+      }
+
+      window.onload = function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const query = urlParams.get("q");
+        if (query) {
+          document.getElementById("search").value = query;
+          redirectToGoogleSearch();
+        }
+      };
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>ETH Search</h1>
+      <input
+        type="text"
+        id="search"
+        class="search-box"
+        onkeypress="if(event.keyCode==13) redirectToGoogleSearch();"
+        placeholder="ex.: subset sum cadmo"
+      />
+      <p class="hint">
+        <b>Search for "query keyword-related-to-course"</b> Explanation: Google
+        seems to be able to search through (handwritten and not-hadnwritten)
+        PDFs. This search does a simple redirect Google with the filters for
+        ethz.ch, type PDF and the current year added.
+        <i>Note: You can add this site as a search provider to your browser.</i>
+        <a href="https://github.com/bcye/eth-search">[Source Code]</a>
+      </p>
+    </div>
+    <script
+      async
+      defer
+      data-domain="ethsearch.roettgers.co"
+      src="https://plausible.io/js/script.js"
+    ></script>
+  </body>
+</html>
