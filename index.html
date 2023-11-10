@@ -44,7 +44,7 @@
       function redirectToGoogleSearch() {
         const query = document.getElementById("search").value;
         const encodedQuery = encodeURIComponent(
-          query + ` site:ethz.ch filetype:pdf ${Date.getCurrentYear()}`,
+          query + ` site:ethz.ch filetype:pdf ${new Date().getFullYear()}`,
         );
         window.location.href = `https://www.google.com/search?q=${encodedQuery}`;
       }
