@@ -1,2 +1,2 @@
-# eth-search
-A custom Google Search Redirect for ETH lecture notes
+# ETH Search
+[Try out](https://ethsearch.roettgers.co)
